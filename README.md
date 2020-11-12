@@ -10,7 +10,7 @@ These instructions, and the associated docker-compose.yml file will result in a 
 1. Install pyenv/Python dependencies
 1. Install docker-compose
 
-For detailed instructions see the following, [Raspbian arm64 setup](https://github.com/tooratty/owncloud-server)
+For detailed instructions see the following, [Raspbian arm64 setup](https://github.com/tooratty/raspbian-arm64)
 
 ## High level steps for Owncloud server setup
 These steps need to be performed on an account that has Docker access. By default this is the root user.
