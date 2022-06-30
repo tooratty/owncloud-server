@@ -12,7 +12,7 @@ volumes:
 
 services:
   owncloud:
-    image: owncloud/server:10.5.0
+    image: owncloud/server:10.9.1
     restart: always
     ports:
       - "8080:8080"
@@ -42,16 +42,16 @@ services:
   db:
     image: mariadb:10.5
     restart: always
-    command: --innodb-log-file-size=64M --max-allowed-packet=128M
+    command: ["--innodb-log-file-size=64M", "--max-allowed-packet=128M"]
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
       - MYSQL_DATABASE=${DB_NAME}
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASSWORD}
     healthcheck:
-      test: ["CMD", "/usr/bin/healthcheck"]
-      interval: 30s
-      timeout: 10s
+      test: ["CMD", "mysqladmin", "ping", "-u", "root", "--password=${DB_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
       retries: 5
     volumes:
       - mysql:/var/lib/mysql
@@ -60,12 +60,11 @@ services:
   redis:
     image: redis:6.0
     restart: always
-    environment:
-      - REDIS_DATABASES=1
+    command: ["--databases", "1"]
     healthcheck:
-      test: ["CMD", "/usr/bin/healthcheck"]
-      interval: 30s
-      timeout: 10s
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
       retries: 5
     volumes:
       - redis:/var/lib/redis
