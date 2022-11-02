@@ -20,7 +20,8 @@ services:
       - db
       - redis
     environment:
-      - OWNCLOUD_DOMAIN=localhost
+      - OWNCLOUD_DOMAIN=${OWNCLOUD_DOMAIN}
+      - OWNCLOUD_TRUSTED_DOMAINS=${OWNCLOUD_TRUSTED_DOMAINS}
       - OWNCLOUD_DB_TYPE=mysql
       - OWNCLOUD_DB_NAME=${DB_NAME}
       - OWNCLOUD_DB_USERNAME=${DB_USER}
