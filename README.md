@@ -56,7 +56,6 @@ docker-compose up -d
 
 ```
 docker-compose down
-docker volume rm owncloud-server_backup
 docker volume rm owncloud-server_files
 docker volume rm owncloud-server_mysql
 docker volume rm owncloud-server_redis
@@ -104,7 +103,6 @@ Upgrading to a new version of Owncloud is a bit more involved. It requires putti
 
 ```
 docker-compose exec owncloud occ maintenance:mode --on
-docker-compose exec db backup
 ```
 
 Now, update the Owncloud version in the docker-compse.yml file.
